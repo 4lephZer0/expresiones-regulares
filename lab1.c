@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include "funciones.h"
+#include <string.h>
 
 /*
 Entrada: argc y argv, argumentos para extraer los parametros de entrada del llamado al archivo.
@@ -14,20 +15,21 @@ Descripcion: se encarga de pasar los parametros de entrada a las variables de en
 int main(int argc, char *argv[]){
     char entrada[20];
     char salida[20];
+    int option;
     int console = 0;
     while((option = getopt(argc, argv, "i:o:b")) != -1){
         switch(option){
             case 'i':
-                entrada = optarg;
+                strcpy(entrada, optarg);
                 break;
             case 'o':
-                salida = optarg;
+                strcpy(salida, optarg);
                 break;
             case 'b':
                 console = 1;
                 break;
         }
     }
-    detector(a,b,console);
+    detector(entrada, salida,console);
     return 0;
 }

@@ -22,13 +22,16 @@ Descripción:calcRegular es una funcion que se encarga de calcular si la cadena
 void calcRegular(char* const cadena, int* opciones, FILE* fichero2){
 
     for (int i = 0; i < strlen(cadena) + 1; i++){
+        
 
         if(i + 3 >= strlen(cadena)){
+            
             
             fprintf(fichero2, "%s No\n", cadena);
             opciones[0] = opciones[0] + 1;
             opciones[2] = opciones[2] + 1;
-            break;
+            
+            i = strlen(cadena);
         }
 
         else if (cadena[i] == 'G'){
@@ -46,7 +49,7 @@ void calcRegular(char* const cadena, int* opciones, FILE* fichero2){
                         opciones[1] = opciones[1] + 1;
                         opciones[2] = opciones[2] + 1;
                         free(cadenaAux);
-                        break;
+                        i = strlen(cadena);
                         
                     }
 
@@ -81,8 +84,9 @@ void calcular(FILE* fichero, FILE* fichero2, int console){
     opciones[2] = 0;
 
     while (fgets(cadena, 60, fichero) != NULL) {
-        calcRegular(cadena, opciones, fichero2);
-        fprintf(fichero2, "%s", cadena);
+        if (strlen(cadena) > 2){
+            calcRegular(cadena, opciones, fichero2);
+        }
     }
 
     if (console == 1){
