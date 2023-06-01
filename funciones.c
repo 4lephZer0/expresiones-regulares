@@ -36,30 +36,52 @@ void calcRegular(char* const cadena, int* opciones, FILE* fichero2){
 
         else if (cadena[i] == 'G'){
 
-            if(cadena[i+1] == 'T'){
+            char* cadenaAux = malloc(sizeof(char) * 60);
+            strcpy(cadenaAux, cadena + i+1);
+            for (int j = 0; j < strlen(cadenaAux); j++){
 
-                char* cadenaAux = malloc(sizeof(char) * 60);
-                strcpy(cadenaAux, cadena + i+1);
+                if(cadenaAux[j] == 'T'){
+
+                    char* cadenaAux2 = malloc(sizeof(char) * 60);
+                    strcpy(cadenaAux2, cadenaAux + j+1);
                 
-                for (int j = 0; j < strlen(cadenaAux); j++){
+                    for (int k = 0; k < strlen(cadenaAux2); k++){
 
-                    if(cadenaAux[j] == 'C'){
+                        if(cadenaAux2[k] == 'C'){
 
-                        fprintf(fichero2, "%s Si\n", cadena);
-                        opciones[1] = opciones[1] + 1;
-                        opciones[2] = opciones[2] + 1;
-                        free(cadenaAux);
-                        i = strlen(cadena);
+                            fprintf(fichero2, "%s Si\n", cadena);
+                            opciones[1] = opciones[1] + 1;
+                            opciones[2] = opciones[2] + 1;
+                            free(cadenaAux2);
+                            free(cadenaAux);
+                            i = strlen(cadena);
+                            j = strlen(cadena);
+                            k = strlen(cadena);
                         
-                    }
+                        }
 
-                    if(cadenaAux[j] == 'G' || cadenaAux[j] == 'A'){
+                        else if(cadenaAux2[k] == 'A'){
 
-                        free(cadenaAux);
-                        break;
-                    }
-                }  
-            } 
+                            free(cadenaAux2);
+                            free(cadenaAux);
+                            j = strlen(cadena);
+                            k = strlen(cadena);
+                        }
+
+                        else if(cadenaAux2[k] == 'G'){
+
+                            free(cadenaAux2);
+                            j = strlen(cadena);
+                        }
+                    }          
+                }
+
+                if(cadenaAux[j] == 'C' || cadenaAux[j] == 'A'){
+
+                    free(cadenaAux);
+                    j = strlen(cadena);
+                }
+            }
         }
     }
 }
