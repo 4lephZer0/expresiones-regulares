@@ -116,7 +116,7 @@ void calcular(FILE* fichero, FILE* fichero2, int console){
     }
     
     fprintf(fichero2, "\n\nTotal de expresiones que Si son regulares: %d\n", opciones[1]);
-    fprintf(fichero2, "Total de expresiones que Ni son regulares: %d\n", opciones[0]);
+    fprintf(fichero2, "Total de expresiones que No son regulares: %d\n", opciones[0]);
     fprintf(fichero2, "Total de lineas leidas: %d", opciones[2]);
     free(opciones);
     
